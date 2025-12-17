@@ -23,23 +23,18 @@
         .container {
             text-align: left;
             max-width: 500px;
+            animation: fadeIn 1s ease-in;
         }
-        h1 {
-            font-size: 6em;
-            margin-bottom: 20px;
-            font-weight: 800;
-            letter-spacing: -2px;
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 1.1em;
             color: white;
-            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7);
-        }
-        p {
-            font-size: 1.2em;
-            margin-bottom: 30px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-            font-weight: 400;
-        }
-        form {
-            margin-top: 20px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
         }
         input[type="email"] {
             padding: 12px;
@@ -47,7 +42,16 @@
             border: none;
             border-radius: 5px;
             margin-right: 10px;
-            width: 250px;
+            width: 100%;
+            max-width: 300px;
+            box-sizing: border-box;
+        }
+        @media (max-width: 600px) {
+            body { padding-left: 5%; }
+            h1 { font-size: 4em; }
+            .container { max-width: 100%; }
+            input[type="email"] { max-width: 100%; margin-right: 0; margin-bottom: 10px; }
+            button { width: 100%; }
         }
         button {
             padding: 12px 25px;
@@ -70,16 +74,11 @@
     <div class="container">
         <h1>Coming Soon</h1>
         <p>Sign up for our beta to get notified when we launch!</p>
-        <form id="signup-form">
-            <input type="email" placeholder="Enter your email" required>
+        <form action="https://formspree.io/f/xwveelvn" method="POST">
+            <label for="email">Enter your email for beta updates:</label>
+            <input type="email" id="email" name="email" placeholder="your@email.com" required>
             <button type="submit">Sign Up</button>
         </form>
     </div>
-    <script>
-        document.getElementById('signup-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Thank you for signing up! We will notify you soon.');
-        });
-    </script>
 </body>
 </html>
